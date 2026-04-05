@@ -1,21 +1,705 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Music Video Portfolio - Student Drummer</title>
-    <meta name="description" content="Explore my music video portfolio showcasing drumming performances and creative passion. Student musician dedicated to rhythm, storytelling, and musical excellence." />
-    <meta property="og:title" content="Music Video Portfolio - Student Drummer" />
-    <meta property="og:description" content="Explore my music video portfolio showcasing drumming performances and creative passion." />
-    <meta property="og:type" content="website" />
-    <link rel="icon" type="image/png" href="/shravan-portfolio/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/shravan-portfolio/assets/index-Bjd76lVl.js"></script>
-    <link rel="stylesheet" crossorigin href="/shravan-portfolio/assets/index-Di639HPH.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shravan Karthik Rajarajan — Music Portfolio</title>
+  <meta name="description" content="Portfolio of Shravan Karthik Rajarajan — drummer, musician, and tech enthusiast. Watch live performances, band highlights, and more." />
+  <meta property="og:title" content="Shravan Karthik Rajarajan — Music Portfolio" />
+  <meta property="og:description" content="Drummer. Student. Artist. Watch live performances and band highlights." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #7c3aed;
+      --primary-light: #a78bfa;
+      --bg: #ffffff;
+      --bg-muted: #f5f3ff;
+      --fg: #1a1a2e;
+      --fg-muted: #6b7280;
+      --card-bg: #ffffff;
+      --card-border: #e5e7eb;
+      --nav-bg: rgba(255,255,255,0.95);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: var(--nav-bg);
+      box-shadow: 0 1px 0 var(--card-border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      max-width: 1152px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-logo { color: var(--fg); }
+
+    .nav-links { display: flex; gap: 0.5rem; }
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      padding: 0.5rem 0.85rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    nav.scrolled .nav-links a { color: var(--fg); }
+    .nav-links a:hover { background: rgba(124,58,237,0.1); color: var(--primary); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: white;
+      border-radius: 2px;
+      transition: background 0.3s;
+    }
+    nav.scrolled .hamburger span { background: var(--fg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: white;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding-top: 64px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--fg);
+      text-decoration: none;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--primary); }
+
+    /* ── HERO ── */
+    #home {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      padding: 0 1.5rem;
+    }
+    .hero-content h1 {
+      color: white;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      margin-bottom: 1.25rem;
+    }
+    .hero-content p {
+      color: rgba(255,255,255,0.9);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      text-decoration: none;
+      border: none;
+    }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn-glass {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-youtube {
+      background: #dc2626;
+      color: white;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--card-border);
+      color: var(--fg);
+    }
+
+    .scroll-arrow {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+      animation: bounce 2s infinite;
+      background: none;
+      border: none;
+      z-index: 2;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 1.5rem; }
+    .container { max-width: 1152px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+    .section-subtitle {
+      color: var(--fg-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .text-center { text-align: center; }
+    .section-header { margin-bottom: 3.5rem; }
+
+    /* ── VIDEOS ── */
+    #videos { background: var(--bg); }
+
+    .video-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .video-card .aspect-video {
+      position: relative;
+      padding-bottom: 56.25%;
+      background: #000;
+    }
+    .video-card .aspect-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .video-info { padding: 1.5rem; }
+    .video-info h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+      color: var(--fg);
+    }
+    .video-info p { color: var(--fg-muted); font-size: 0.95rem; }
+
+    .video-featured { margin-bottom: 2.5rem; }
+    .video-featured .video-info { padding: 2rem; }
+    .video-featured .video-info h3 { font-size: 1.6rem; }
+    .video-featured .video-info p { font-size: 1.05rem; }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .video-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg-muted); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+      .about-text { order: 1; }
+      .about-image { order: 2; }
+    }
+    .about-text .section-label { text-align: left; }
+    .about-text .section-title { text-align: left; margin-bottom: 1.5rem; }
+    .about-text p { color: var(--fg-muted); font-size: 1rem; margin-bottom: 1rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-img-wrap {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-img-deco {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 10rem;
+      height: 10rem;
+      background: rgba(124,58,237,0.1);
+      border-radius: 10px;
+      z-index: -1;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    @media (min-width: 640px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+    }
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(124,58,237,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: var(--primary);
+    }
+    .stat-icon svg { width: 22px; height: 22px; }
+    .stat-card h3 {
+      font-size: 1.6rem;
+      color: var(--fg);
+      margin-bottom: 0.25rem;
+    }
+    .stat-card p { color: var(--fg-muted); font-size: 0.875rem; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) { .skills-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .skill-group h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--fg);
+      margin-bottom: 1rem;
+    }
+    .skill-group ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .skill-group li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--fg-muted);
+      font-size: 0.95rem;
+    }
+    .skill-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg-muted); }
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--card-border);
+      text-align: center;
+      color: var(--fg-muted);
+      font-size: 0.875rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 767px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 4rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <span class="nav-logo" onclick="scrollTo('home')">Shravan Karthik Rajarajan</span>
+    <div class="nav-links">
+      <a onclick="scrollTo('videos')">Videos</a>
+      <a onclick="scrollTo('about')">About</a>
+      <a onclick="scrollTo('experience')">Experience</a>
+      <a onclick="scrollTo('contact')">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="closeMobileMenu(); scrollTo('home')">Home</a>
+  <a onclick="closeMobileMenu(); scrollTo('videos')">Videos</a>
+  <a onclick="closeMobileMenu(); scrollTo('about')">About</a>
+  <a onclick="closeMobileMenu(); scrollTo('experience')">Experience</a>
+  <a onclick="closeMobileMenu(); scrollTo('contact')">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg">
+    <img src="images/hero.jpg" alt="Shravan performing drums on stage" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <h1>Drummer. Student. Artist.</h1>
+    <p>Bringing rhythm to life through music videos and creative passion</p>
+    <button class="btn btn-glass" onclick="scrollTo('videos')">Watch My Videos</button>
+  </div>
+  <button class="scroll-arrow" onclick="scrollTo('videos')" aria-label="Scroll down">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </button>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <div class="container">
+    <div class="section-header text-center">
+      <p class="section-label">My Work</p>
+      <h2 class="section-title">Music Videos</h2>
+      <p class="section-subtitle">A collection of performances showcasing my journey as a drummer and storyteller</p>
+    </div>
+
+    <!-- Featured Video -->
+    <div class="video-card video-featured">
+      <div class="aspect-video">
+        <iframe src="https://www.youtube.com/embed/kClNpGIz_-4"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen title="VIP"></iframe>
+      </div>
+      <div class="video-info">
+        <h3>VIP</h3>
+        <p>Favorite music piece of our band</p>
+      </div>
+    </div>
+
+    <!-- Video Grid -->
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="aspect-video">
+          <iframe src="https://www.youtube.com/embed/WPs98tqUhlU"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen title="Band performance at Vitality Living"></iframe>
+        </div>
+        <div class="video-info">
+          <h3>Band performance at Vitality Living, Milton</h3>
+          <p>Our band performed for seniors at Vitality Living</p>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="aspect-video">
+          <iframe src="https://www.youtube.com/embed/MaWBW5E9xWc"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen title="Drums highlights"></iframe>
+        </div>
+        <div class="video-info">
+          <h3>A compilation of drums highlights</h3>
+          <p>Key moments of drums at Atlanta India Festival</p>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="aspect-video">
+          <iframe src="https://www.youtube.com/embed/7yO5LvhFHtQ"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen title="FETNA National Festival"></iframe>
+        </div>
+        <div class="video-info">
+          <h3>Playing Bass drum at FETNA National Festival</h3>
+          <p>Lead the team with Bass drum at FETNA</p>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="aspect-video">
+          <iframe src="https://www.youtube.com/embed/9ZxTLlvQs84"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen title="GAMA Performance"></iframe>
+        </div>
+        <div class="video-info">
+          <h3>GAMA Performance</h3>
+          <p>Live performance with the band at Greater Atlanta Malayalam Association</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">From beats to bytes, Rhythm is how I connect</h2>
+        <p>Hey! I'm Shravan — a musician, drummer, and tech enthusiast who loves blending creativity with technology. Music has always been a huge part of my life, from performing at festivals like the Atlanta India Festival, Access Life America, Senior Living Homes, GAMA, ATM, GATS to leading youth bands and teaching others how to play instruments like guitar and piano.</p>
+        <p>Beyond performing, I'm passionate about the technical side of music. I've been developing custom AI-powered software that helps musicians mix, record, and produce more efficiently. It's my way of combining coding and sound to make the creative process smoother and smarter.</p>
+        <p>For me, music isn't just about performing — it's about connection. It's about bringing people together, creating something meaningful, and constantly pushing boundaries through rhythm, design, and innovation.</p>
+      </div>
+      <div class="about-image">
+        <div class="about-img-wrap">
+          <img src="images/about.jpg" alt="Shravan Karthik Rajarajan" />
+          <div class="about-img-deco"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header text-center">
+      <p class="section-label">Skills &amp; Experience</p>
+      <h2 class="section-title">Musical Journey</h2>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+        </div>
+        <h3>10+ Years</h3>
+        <p>Playing music instruments</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3>5+ Years</h3>
+        <p>Percussion instruments</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>30+ Performances</h3>
+        <p>Collaborative performances</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+          </svg>
+        </div>
+        <h3>10+ Awards</h3>
+        <p>Music competition awards</p>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Drums &amp; Percussion</h3>
+        <ul>
+          <li><span class="skill-dot"></span>Acoustic Drum Kit</li>
+          <li><span class="skill-dot"></span>Traditional Indian Percussions</li>
+          <li><span class="skill-dot"></span>Parai-Indian Hand Drum</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Musical Styles</h3>
+        <ul>
+          <li><span class="skill-dot"></span>Rock</li>
+          <li><span class="skill-dot"></span>Classical</li>
+          <li><span class="skill-dot"></span>Indian Folk</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Technical Skills</h3>
+        <ul>
+          <li><span class="skill-dot"></span>AI App Development</li>
+          <li><span class="skill-dot"></span>Video Editing</li>
+          <li><span class="skill-dot"></span>Audio Engineering &amp; Production</li>
+          <li><span class="skill-dot"></span>Mixing</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Other Skills</h3>
+        <ul>
+          <li><span class="skill-dot"></span>Music Theory</li>
+          <li><span class="skill-dot"></span>Composition</li>
+          <li><span class="skill-dot"></span>Improvisation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header text-center">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="section-subtitle">I'm always excited to collaborate on new projects or discuss music. Whether you're a fellow musician, college admissions officer, or just want to chat about drums—reach out!</p>
+    </div>
+    <div class="contact-buttons">
+      <a class="btn btn-primary" href="mailto:r.shravankarthik@gmail.com">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        Email Me
+      </a>
+      <a class="btn btn-youtube" href="https://www.youtube.com/@shravankarthikrajarajan" target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+          <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/>
+        </svg>
+        Visit My Channel
+      </a>
+    </div>
+    <div class="footer">
+      <p>&copy; 2025 Shravan Karthik Rajarajan's Music Portfolio. Built with passion and rhythm.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Smooth scroll
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 20) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+  }
+</script>
+</body>
 </html>
