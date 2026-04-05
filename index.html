@@ -9,7 +9,7 @@
   <meta property="og:description" content="Drummer. Student. Artist. Watch live performances and band highlights." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -34,7 +34,7 @@
       line-height: 1.6;
     }
 
-    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    h1, h2, h3 { font-family: 'Montserrat', sans-serif; line-height: 1.2; }
 
     /* ── NAV ── */
     nav {
@@ -58,9 +58,9 @@
       justify-content: space-between;
     }
     .nav-logo {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: white;
       text-decoration: none;
       cursor: pointer;
@@ -115,7 +115,7 @@
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 1.75rem;
       font-weight: 700;
       color: var(--fg);
@@ -161,6 +161,7 @@
     .hero-content h1 {
       color: white;
       font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 800;
       margin-bottom: 1.25rem;
     }
     .hero-content p {
@@ -199,11 +200,6 @@
       background: #dc2626;
       color: white;
     }
-    .btn-outline {
-      background: transparent;
-      border: 1.5px solid var(--card-border);
-      color: var(--fg);
-    }
 
     .scroll-arrow {
       position: absolute;
@@ -235,6 +231,7 @@
     }
     .section-title {
       font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
       margin-bottom: 1rem;
       color: var(--fg);
     }
@@ -266,10 +263,12 @@
       inset: 0;
       width: 100%;
       height: 100%;
+      border: none;
     }
     .video-info { padding: 1.5rem; }
     .video-info h3 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
+      font-weight: 700;
       margin-bottom: 0.4rem;
       color: var(--fg);
     }
@@ -304,7 +303,7 @@
     }
     .about-text .section-label { text-align: left; }
     .about-text .section-title { text-align: left; margin-bottom: 1.5rem; }
-    .about-text p { color: var(--fg-muted); font-size: 1rem; margin-bottom: 1rem; }
+    .about-text p { color: var(--fg-muted); font-size: 1rem; margin-bottom: 1rem; line-height: 1.75; }
     .about-text p:last-child { margin-bottom: 0; }
     .about-img-wrap {
       position: relative;
@@ -313,16 +312,6 @@
       aspect-ratio: 4/5;
     }
     .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .about-img-deco {
-      position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
-      width: 10rem;
-      height: 10rem;
-      background: rgba(124,58,237,0.1);
-      border-radius: 10px;
-      z-index: -1;
-    }
 
     /* ── EXPERIENCE ── */
     #experience { background: var(--bg); }
@@ -354,11 +343,7 @@
       color: var(--primary);
     }
     .stat-icon svg { width: 22px; height: 22px; }
-    .stat-card h3 {
-      font-size: 1.6rem;
-      color: var(--fg);
-      margin-bottom: 0.25rem;
-    }
+    .stat-card h3 { font-size: 1.6rem; font-weight: 800; color: var(--fg); margin-bottom: 0.25rem; }
     .stat-card p { color: var(--fg-muted); font-size: 0.875rem; }
 
     .skills-grid {
@@ -368,12 +353,7 @@
     }
     @media (min-width: 768px) { .skills-grid { grid-template-columns: repeat(4, 1fr); } }
 
-    .skill-group h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      color: var(--fg);
-      margin-bottom: 1rem;
-    }
+    .skill-group h3 { font-size: 1.05rem; font-weight: 700; color: var(--fg); margin-bottom: 1rem; }
     .skill-group ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
     .skill-group li {
       display: flex;
@@ -399,8 +379,6 @@
       justify-content: center;
       margin-bottom: 3rem;
     }
-
-    /* ── FOOTER ── */
     .footer {
       margin-top: 4rem;
       padding-top: 2rem;
@@ -423,12 +401,12 @@
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
-    <span class="nav-logo" onclick="scrollTo('home')">Shravan Karthik Rajarajan</span>
+    <span class="nav-logo" onclick="goTo('home')">Shravan Karthik Rajarajan</span>
     <div class="nav-links">
-      <a onclick="scrollTo('videos')">Videos</a>
-      <a onclick="scrollTo('about')">About</a>
-      <a onclick="scrollTo('experience')">Experience</a>
-      <a onclick="scrollTo('contact')">Contact</a>
+      <a onclick="goTo('videos')">Videos</a>
+      <a onclick="goTo('about')">About</a>
+      <a onclick="goTo('experience')">Experience</a>
+      <a onclick="goTo('contact')">Contact</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -438,11 +416,11 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a onclick="closeMobileMenu(); scrollTo('home')">Home</a>
-  <a onclick="closeMobileMenu(); scrollTo('videos')">Videos</a>
-  <a onclick="closeMobileMenu(); scrollTo('about')">About</a>
-  <a onclick="closeMobileMenu(); scrollTo('experience')">Experience</a>
-  <a onclick="closeMobileMenu(); scrollTo('contact')">Contact</a>
+  <a onclick="closeMobileMenu(); goTo('home')">Home</a>
+  <a onclick="closeMobileMenu(); goTo('videos')">Videos</a>
+  <a onclick="closeMobileMenu(); goTo('about')">About</a>
+  <a onclick="closeMobileMenu(); goTo('experience')">Experience</a>
+  <a onclick="closeMobileMenu(); goTo('contact')">Contact</a>
 </div>
 
 <!-- HERO -->
@@ -454,9 +432,9 @@
   <div class="hero-content">
     <h1>Drummer. Student. Artist.</h1>
     <p>Bringing rhythm to life through music videos and creative passion</p>
-    <button class="btn btn-glass" onclick="scrollTo('videos')">Watch My Videos</button>
+    <button class="btn btn-glass" onclick="goTo('videos')">Watch My Videos</button>
   </div>
-  <button class="scroll-arrow" onclick="scrollTo('videos')" aria-label="Scroll down">
+  <button class="scroll-arrow" onclick="goTo('videos')" aria-label="Scroll down">
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="6 9 12 15 18 9"/>
     </svg>
@@ -472,7 +450,6 @@
       <p class="section-subtitle">A collection of performances showcasing my journey as a drummer and storyteller</p>
     </div>
 
-    <!-- Featured Video -->
     <div class="video-card video-featured">
       <div class="aspect-video">
         <iframe src="https://www.youtube.com/embed/kClNpGIz_-4"
@@ -485,7 +462,6 @@
       </div>
     </div>
 
-    <!-- Video Grid -->
     <div class="video-grid">
       <div class="video-card">
         <div class="aspect-video">
@@ -552,7 +528,6 @@
       <div class="about-image">
         <div class="about-img-wrap">
           <img src="images/about.jpg" alt="Shravan Karthik Rajarajan" />
-          <div class="about-img-deco"></div>
         </div>
       </div>
     </div>
@@ -674,14 +649,13 @@
 </section>
 
 <script>
-  // Smooth scroll
-  function scrollTo(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  function goTo(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   }
 
-  // Navbar scroll effect
-  window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    var navbar = document.getElementById('navbar');
     if (window.scrollY > 20) {
       navbar.classList.add('scrolled');
     } else {
@@ -689,16 +663,12 @@
     }
   });
 
-  // Mobile menu toggle
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.getElementById('mobileMenu').classList.toggle('open');
   });
 
   function closeMobileMenu() {
-    mobileMenu.classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
   }
 </script>
 </body>
